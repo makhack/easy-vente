@@ -1,0 +1,4 @@
+services:
+#    ev_front.example:
+#        class: Ev\FrontBundle\Example
+#        arguments: [@service_id, "plain_value", %parameter%]

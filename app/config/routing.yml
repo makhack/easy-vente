@@ -1,0 +1,3 @@
+ev_front:
+    resource: "@EvFrontBundle/Resources/config/routing.yml"
+    prefix:   /
