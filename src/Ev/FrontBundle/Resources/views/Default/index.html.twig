@@ -1,6 +1,58 @@
 {% extends "EvFrontBundle:Default:base.html.twig" %}
 
 {% block body %}
+    
+    <!-- Modal -->
+    <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                    <h4 class="modal-title" id="myModalLabel">Modal title</h4>
+                </div>
+                <div class="modal-body">
+                    <div class="container-fluid">
+			<div class="row vdivide">
+                            <div class="col-md-6">
+                                <h4>S'inscrire</h4>
+                                <form>
+                                    <div class="form-group">
+                                        <input type="text" class="form-control" id="prenom" placeholder="Prénom" />
+                                    </div>
+                                    <div class="form-group">
+                                        <input type="text" class="form-control" id="nom" placeholder="Nom" />
+                                    </div>
+                                    <div class="form-group">
+                                        <input type="text" class="form-control" id="mail" placeholder="jane.doe@anonymo.us" />
+                                    </div>
+                                    <div class="form-group">
+                                        <input type="password" class="form-control" id="passwd" placeholder="Mot de passe" />
+                                    </div>
+                                    <input type="submit" class="btn btn-theme" />
+                                </form>
+                            </div>
+                            <div class="col-md-6">
+                                <h4>Se connecter</h4>
+                                <form>
+                                    <div class="form-group">
+                                        <input type="text" class="form-control" id="mail" placeholder="jane.doe@anonymo.us" />
+                                    </div>
+                                    <div class="form-group">
+                                        <input type="password" class="form-control" id="passwd" placeholder="Mot de passe" />
+                                    </div>
+                                    <input type="submit" class="btn btn-theme" />
+                                </form>
+                            </div>
+			</div>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    
     <section id="featured">
 	<!-- start slider -->
 	<div class="container">
@@ -77,4 +129,12 @@
 	</div>
     </section>
     
+{% endblock %}
+
+{% block javascript %}
+    <script type="text/javascript">
+        $(document).ready(function(){
+            $('#myModal').modal();
+        });
+    </script>
 {% endblock %}

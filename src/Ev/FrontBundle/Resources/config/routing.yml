@@ -2,6 +2,10 @@ ev_front_homepage:
     path:     /
     defaults: { _controller: EvFrontBundle:Default:index }
 
+ev_front_events:
+    path: /prochains-evenements
+    defaults: { _controller: EvFrontBundle:Default:index }
+
 ev_front_connexion:
     path: /connexion
     defaults: { _controller: EvFrontBundle:Default:connexion }
