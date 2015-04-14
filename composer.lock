@@ -4,7 +4,7 @@
         "Read more about it at http://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "hash": "aca2a6523821838b7ace0295925e4c51",
+    "hash": "052d627383ad6be502b8bbae606a08df",
     "packages": [
         {
             "name": "doctrine/annotations",
@@ -709,8 +709,6 @@
             "time": "2014-12-16 13:45:01"
         },
         {
-<<<<<<< HEAD
-=======
             "name": "friendsofsymfony/user-bundle",
             "version": "dev-master",
             "source": {
@@ -778,7 +776,6 @@
             "time": "2015-03-12 11:42:34"
         },
         {
->>>>>>> 431281996ee73307d274e691a3563333d317d9f3
             "name": "incenteev/composer-parameter-handler",
             "version": "v2.1.0",
             "target-dir": "Incenteev/ParameterHandler",
@@ -1737,13 +1734,9 @@
     ],
     "aliases": [],
     "minimum-stability": "stable",
-<<<<<<< HEAD
-    "stability-flags": [],
-=======
     "stability-flags": {
         "friendsofsymfony/user-bundle": 20
     },
->>>>>>> 431281996ee73307d274e691a3563333d317d9f3
     "prefer-stable": false,
     "prefer-lowest": false,
     "platform": {
