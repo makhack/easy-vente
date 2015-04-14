@@ -1,0 +1,8 @@
+ev_front_homepage:
+    path:     /hello/{name}
+    defaults: { _controller: EvFrontBundle:Default:index }
+
+ev_front_connexion:
+    path: /connexion
+    defaults: { _controller: EvFrontBundle:Default:connexion }
+    
