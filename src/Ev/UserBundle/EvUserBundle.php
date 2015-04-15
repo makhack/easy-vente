@@ -1,10 +1,10 @@
 <?php
 
-namespace Ev\FrontBundle;
+namespace Ev\UserBundle;
 
 use Symfony\Component\HttpKernel\Bundle\Bundle;
 
-class EvFrontBundle extends Bundle
+class EvUserBundle extends Bundle
 {
     public function getParent()
     {

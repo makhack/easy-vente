@@ -76,3 +76,6 @@ fos_user:
     db_driver: orm
     firewall_name: main
     user_class: Ev\FrontBundle\Entity\User
+    registration:
+        form:
+            type: ev_user_registration

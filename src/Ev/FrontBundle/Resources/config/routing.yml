@@ -9,3 +9,7 @@ ev_front_events:
 ev_front_connexion:
     path: /connexion
     defaults: { _controller: EvFrontBundle:Default:connexion }
+    
+ev_front_register:
+    path: /register
+    defaults: { _controller: EvUserBundle:Registration:register }

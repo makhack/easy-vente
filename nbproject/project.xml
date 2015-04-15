@@ -3,11 +3,7 @@
     <type>org.netbeans.modules.php.project</type>
     <configuration>
         <data xmlns="http://www.netbeans.org/ns/php-project/1">
-<<<<<<< HEAD
-            <name>easy-vente</name>
-=======
             <name>easy_vente</name>
->>>>>>> master
         </data>
     </configuration>
 </project>
