@@ -131,3 +131,4 @@ class DefaultController extends Controller
         
         return $this->render('EvFrontBundle:Default:events.html.twig', $data);
     }
+}
