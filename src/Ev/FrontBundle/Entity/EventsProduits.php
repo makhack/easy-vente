@@ -5,12 +5,12 @@ namespace Ev\FrontBundle\Entity;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
- * Events_Produits
+ * EventsProduits
  *
  * @ORM\Table()
- * @ORM\Entity(repositoryClass="Ev\FrontBundle\Entity\Events_ProduitsRepository")
+ * @ORM\Entity(repositoryClass="Ev\FrontBundle\Entity\EventsProduitsRepository")
  */
-class Events_Produits
+class EventsProduits
 {
     /**
      * @var integer
@@ -24,14 +24,14 @@ class Events_Produits
     /**
      * @var integer
      *
-     * @ORM\Column(name="events_id", type="integer")
+     * @ORM\Column(name="eventsId", type="integer")
      */
     private $eventsId;
 
     /**
      * @var integer
      *
-     * @ORM\Column(name="produits_id", type="integer")
+     * @ORM\Column(name="produitsId", type="integer")
      */
     private $produitsId;
 

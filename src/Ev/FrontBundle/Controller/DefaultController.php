@@ -34,18 +34,34 @@ class DefaultController extends Controller
         foreach ($events as $event) {
             $category = $em->getRepository('EvFrontBundle:Category')->findOneNameById($event->getCategoryId());
             $image  = $em->getRepository('EvFrontBundle:Images')->findOneById($event->getImageId());
+            
             $event->setCategoryId($category);
             $event->setImageId($image);
             
-            $produits = $em->getRepository('EvFrontBundle:EventsProduits')->findAllByEventId($event->getId());
+            $eProduits = $em->getRepository('EvFrontBundle:EventsProduits')->findAllByEventId($event->getId());
             
-          //  var_dump($produits);
+            foreach ($eProduits as $eProduit) {
+                $produit = $em->getRepository('EvFrontBundle:Produits')->findOneById($eProduit->getProduitsId());
+                
+                $image = $em->getRepository('EvFrontBundle:Images')->findOneById($produit->getImageId());
+                
+                //var_dump($image);
+                $prodInfo[$event->getId()][] = array(
+                    'name' => $produit->getNom(),
+                    'image' => $image->getLien()
+                );
+            }
+            
         }
+        
+        $data['products'] = $prodInfo;
         
         $pagination = $this->get('knp_paginator')
                            ->paginate($events, $request->query->get('page', 1),1);
       
         $data['pagination'] = $pagination;
+        
+        //var_dump($events);
         
         return $this->render('EvFrontBundle:Default:events.html.twig', $data);
     }

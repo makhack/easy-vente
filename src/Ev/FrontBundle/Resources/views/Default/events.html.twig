@@ -12,11 +12,31 @@
                 <h3 class="panel-title">{{ event.nom }}</h3>
             </div>
             <div class="panel-body">
-                <img src="{{ asset( event.imageId[0].lien ) }}" />
+                <img src="{{ asset( event.imageId.lien ) }}" />
                 <p> </p>
                 <p>
                     <span class="label label-default">Date</span> {{ event.date|date('d/m/Y à H:i') }} <span class="label label-default">Lieu</span> {{ event.lieux }} <span class="label label-default">Produits proposés</span> {{ event.categoryId[0]['nom'] }}
                 </p>
+            
+            
+            <div class="container">
+                    <div class="row">
+                        <h4>Les produits mis en vente</h4>
+                {% for product in products[event.id] %}
+                        <div class="col-md-4">
+                            <div class="panel panel-default">
+                                <div class="panel-body">
+                                    <img src="{{ asset(product['image']) }}" />
+                                </div>
+                                <div class="panel-footer">
+                                    {{ product['name'] }}
+                                </div>
+                            </div>
+                        </div>
+                {% endfor %}
+                    
+                    </div>
+                </div>
             </div>
         </div>
     {% endfor %}
