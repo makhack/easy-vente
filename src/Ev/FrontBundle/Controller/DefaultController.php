@@ -36,6 +36,10 @@ class DefaultController extends Controller
             $image  = $em->getRepository('EvFrontBundle:Images')->findOneById($event->getImageId());
             $event->setCategoryId($category);
             $event->setImageId($image);
+            
+            $produits = $em->getRepository('EvFrontBundle:EventsProduits')->findAllByEventId($event->getId());
+            
+          //  var_dump($produits);
         }
         
         $pagination = $this->get('knp_paginator')

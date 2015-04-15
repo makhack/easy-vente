@@ -6,32 +6,21 @@ use Doctrine\ORM\Mapping as ORM;
 
 /**
  * Events_Produits
- *
- * @ORM\Table()
- * @ORM\Entity(repositoryClass="Ev\FrontBundle\Entity\Events_ProduitsRepository")
  */
 class Events_Produits
 {
     /**
      * @var integer
-     *
-     * @ORM\Column(name="id", type="integer")
-     * @ORM\Id
-     * @ORM\GeneratedValue(strategy="AUTO")
      */
     private $id;
 
     /**
      * @var integer
-     *
-     * @ORM\Column(name="events_id", type="integer")
      */
     private $eventsId;
 
     /**
      * @var integer
-     *
-     * @ORM\Column(name="produits_id", type="integer")
      */
     private $produitsId;
 
