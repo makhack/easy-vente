@@ -12,4 +12,13 @@ use Doctrine\ORM\EntityRepository;
  */
 class ImagesRepository extends EntityRepository
 {
+    public function findOneById($id)
+    {
+        $q = $this->getEntityManager()
+                ->createQuery('SELECT i FROM EvFrontBundle:Images i WHERE i.id = :id')
+                ->setParameter('id', $id)
+                ->getResult();
+        
+        return $q[0];
+    }
 }

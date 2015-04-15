@@ -12,4 +12,13 @@ use Doctrine\ORM\EntityRepository;
  */
 class ProduitsRepository extends EntityRepository
 {
+    public function findOneById($id)
+    {
+        $q = $this->getEntityManager()
+                ->createQuery('SELECT p FROM EvFrontBundle:Produits p WHERE p.id = :id')
+                ->setParameter('id', $id)
+                ->getResult();
+        
+        return $q[0];
+    }
 }

@@ -4,7 +4,7 @@ ev_front_homepage:
 
 ev_front_events:
     path: /prochains-evenements
-    defaults: { _controller: EvFrontBundle:Default:index }
+    defaults: { _controller: EvFrontBundle:Default:next }
 
 ev_front_accueil_connected:
     path: /accueil/connected
@@ -13,3 +13,4 @@ ev_front_accueil_connected:
 ev_front_register:
     path: /register
     defaults: { _controller: EvUserBundle:Registration:register }
+
