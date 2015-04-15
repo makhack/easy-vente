@@ -31,9 +31,16 @@ class Events
     /**
      * @var \DateTime
      *
-     * @ORM\Column(name="date", type="datetime")
+     * @ORM\Column(name="startDate", type="datetime")
      */
-    private $date;
+    private $startDate;
+    
+    /**
+     * @var \DateTime
+     * 
+     * @ORM\Column(name="endDate", type="datetime")
+     */
+    private $endDate;
 
     /**
      * @var string
@@ -92,28 +99,51 @@ class Events
     }
 
     /**
-     * Set date
+     * Set startDate
      *
      * @param \DateTime $date
      * @return Events
      */
-    public function setDate($date)
+    public function setStartDate($date)
     {
-        $this->date = $date;
+        $this->startDate = $date;
 
         return $this;
     }
 
     /**
-     * Get date
+     * Get startDate
      *
      * @return \DateTime 
      */
-    public function getDate()
+    public function getStartDate()
     {
-        return $this->date;
+        return $this->startDate;
+    }
+    
+    /**
+     * Set endDate
+     *
+     * @param \DateTime $date
+     * @return Events
+     */
+    public function setEndDate($date)
+    {
+        $this->endDate = $date;
+
+        return $this;
     }
 
+    /**
+     * Get endDate
+     *
+     * @return \DateTime 
+     */
+    public function getEndDate()
+    {
+        return $this->endDate;
+    }
+    
     /**
      * Set lieux
      *

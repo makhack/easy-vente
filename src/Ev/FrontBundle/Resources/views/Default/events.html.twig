@@ -15,14 +15,17 @@
                 <img src="{{ asset( event.imageId.lien ) }}" />
                 <p> </p>
                 <p>
-                    <span class="label label-default">Date</span> {{ event.date|date('d/m/Y à H:i') }} <span class="label label-default">Lieu</span> {{ event.lieux }} <span class="label label-default">Produits proposés</span> {{ event.categoryId[0]['nom'] }}
+                    <span class="label label-default">Date</span> du {{ event.startDate|date('d/m/Y à H:i') }} au {{ event.endDate|date('d/m/Y à H:i') }} <span class="label label-default">Lieu</span> {{ event.lieux }} <span class="label label-default">Produits proposés</span> {{ event.categoryId[0]['nom'] }}
                 </p>
             
             
             <div class="container">
                     <div class="row">
                         <h4>Les produits mis en vente</h4>
-                {% for product in products[event.id] %}
+                {% if products[event.id] is not defined %}
+                    <p>Pas de produits à afficher</p>
+                {% else %}
+                    {% for product in products[event.id] %}
                         <div class="col-md-4">
                             <div class="panel panel-default">
                                 <div class="panel-body">
@@ -33,7 +36,8 @@
                                 </div>
                             </div>
                         </div>
-                {% endfor %}
+                    {% endfor %}
+                {% endif %}
                     
                     </div>
                 </div>

@@ -27,8 +27,8 @@ class DefaultController extends Controller
         
        $events = $em->createQuery(
                 'SELECT e FROM EvFrontBundle:Events e
-                WHERE e.date >= :date
-                ORDER BY e.date ASC')
+                WHERE e.endDate >= :date
+                ORDER BY e.endDate ASC')
                 ->setParameter('date',date('Y-m-d H:i:s'))->getResult();
         
         foreach ($events as $event) {
@@ -60,8 +60,6 @@ class DefaultController extends Controller
                            ->paginate($events, $request->query->get('page', 1),1);
       
         $data['pagination'] = $pagination;
-        
-        //var_dump($events);
         
         return $this->render('EvFrontBundle:Default:events.html.twig', $data);
     }
