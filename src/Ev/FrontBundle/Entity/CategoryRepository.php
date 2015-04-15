@@ -12,4 +12,11 @@ use Doctrine\ORM\EntityRepository;
  */
 class CategoryRepository extends EntityRepository
 {
+    public function findOneNameById($id)
+    {
+        return $this->getEntityManager()
+                ->createQuery('SELECT c.nom FROM EvFrontBundle:Category c WHERE c.id = :id')
+                ->setParameter('id', $id)
+                ->getResult();
+    }
 }

@@ -31,7 +31,7 @@ class Events
     /**
      * @var \DateTime
      *
-     * @ORM\Column(name="date", type="date")
+     * @ORM\Column(name="date", type="datetime")
      */
     private $date;
 
@@ -46,6 +46,7 @@ class Events
      * @var integer
      *
      * @ORM\Column(name="category_id", type="integer")
+     * @ORM\ManyToOne(targetEntity="Category")
      */
     private $categoryId;
 
