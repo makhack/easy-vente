@@ -57,8 +57,7 @@ class DefaultController extends Controller
                 ;
                 $this->get('mailer')->send($message);
                 
-                
-                return $this->render('EvFrontBundle:Default:index.html.twig',$data);
+                return $this->redirect($this->generateUrl('ev_front_accueil_connected'));
             }
 
             unset($user);
@@ -73,5 +72,18 @@ class DefaultController extends Controller
         
 
         return $this->render('EvFrontBundle:Default:index.html.twig',$data);
+    }
+    
+    
+    public function connectedAction(Request $request)
+    {
+        $repo = $this->getDoctrine()
+                   ->getManager()
+                   ->getRepository('EvFrontBundle:Images');
+        $slides = $repo->findAll();
+        
+        $data['slides'] = $slides;
+        
+        return $this->render('EvFrontBundle:Default:indexConnected.html.twig',$data);
     }
 }

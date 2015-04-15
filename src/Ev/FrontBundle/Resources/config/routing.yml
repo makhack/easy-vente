@@ -6,9 +6,9 @@ ev_front_events:
     path: /prochains-evenements
     defaults: { _controller: EvFrontBundle:Default:index }
 
-ev_front_connexion:
-    path: /connexion
-    defaults: { _controller: EvFrontBundle:Default:connexion }
+ev_front_accueil_connected:
+    path: /accueil/connected
+    defaults: { _controller: EvFrontBundle:Default:connected }
     
 ev_front_register:
     path: /register
