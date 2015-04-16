@@ -1,0 +1,46 @@
+{% extends "EvFrontBundle:Default:base.html.twig" %}
+
+{% block body %}
+    <section id="content">
+	<div class="container">
+            <div class="row">
+                <h1>Nos meilleures ventes</h1>
+			
+                <div role="tabpanel">
+                
+                {% for produit in produits %}
+                    {% if loop.first %}
+                        <ul class="nav nav-tabs" role="tablist">
+                    {% endif %}
+                            <li role="presentation" {% if loop.first %}class="active"{% endif %}>
+                                <a href="#{{ loop.index }}" aria-controls="profile" role="tab" data-toggle="tab">#{{ loop.index }}</a>
+                            </li>
+                    {% if loop.last %}
+                        </ul>
+                    {% endif %}
+                {% endfor %}
+                
+                {% for produit in produits %}
+                    {% if loop.first %}
+                        <div class="tab-content">
+                    {% endif %}
+                            <div role="tabpanel" class="tab-pane {% if loop.first %}active{% endif %}" id="{{ loop.index }}">
+                                <h3>{{ produit.nom }}</h3>
+                                
+                                <img src="{{ asset(images[produit.id].lien) }}" />
+                                <p>{{ produit.description }}</p>
+                                <p><span class="label label-info">Disponible depuis le</span> {{ produit.dateCreation|date('d/m/Y') }} <span class="label label-info">Stocks</span> {{ produit.stock }}</p>
+                            </div>
+                    {% if loop.last %}
+                        </div>
+                    {% endif %}
+                    
+                {% endfor %}
+                    
+                </div>
+    
+            </div>
+        </div>
+    </section>
+    
+{% endblock %}

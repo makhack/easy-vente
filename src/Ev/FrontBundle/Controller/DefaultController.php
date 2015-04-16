@@ -9,10 +9,13 @@ class DefaultController extends Controller
 {
     public function indexAction(Request $request)
     {
-        $repo = $this->getDoctrine()
-                   ->getManager()
-                   ->getRepository('EvFrontBundle:Images');
-        $slides = $repo->findAll();
+        $em = $this->getDoctrine()
+                   ->getManager();
+                   
+        $slides = $em->createQuery('SELECT i FROM EvFrontBundle:Images i ORDER BY i.id')
+                     ->setMaxResults(3)
+                     ->setFirstResult(0)
+                     ->getResult();
         
         $data['slides'] = $slides;
         
@@ -62,5 +65,31 @@ class DefaultController extends Controller
         $data['pagination'] = $pagination;
         
         return $this->render('EvFrontBundle:Default:events.html.twig', $data);
+    }
+    
+    public function bestAction()
+    {
+        $em = $this->getDoctrine()->getManager();
+        
+        $produits = $em->createQuery('SELECT p FROM EvFrontBundle:Produits p ORDER BY p.stock ASC')
+                    ->setMaxResults(10)
+                    ->setFirstResult(0)
+                    ->getResult();
+        
+        //var_dump($produits);
+        
+        foreach($produits as $produit){
+            $image = $em->getRepository('EvFrontBundle:Images')->findOneById($produit->getImageId());
+            
+            $images[$produit->getId()] = $image;
+        }
+        
+        $data['produits'] = $produits;
+        
+        $data['images'] = $images;
+        
+        //var_dump($images);
+        
+        return $this->render('EvFrontBundle:Default:best.html.twig', $data);
     }
 }

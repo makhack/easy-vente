@@ -52,7 +52,7 @@ class Produits
     /**
      * @var \DateTime
      *
-     * @ORM\Column(name="date_creation", type="date")
+     * @ORM\Column(name="dateCreation", type="date")
      */
     private $dateCreation;
 

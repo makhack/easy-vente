@@ -15,7 +15,7 @@
                 <img src="{{ asset( event.imageId.lien ) }}" />
                 <p> </p>
                 <p>
-                    <span class="label label-default">Date</span> du {{ event.startDate|date('d/m/Y à H:i') }} au {{ event.endDate|date('d/m/Y à H:i') }} <span class="label label-default">Lieu</span> {{ event.lieux }} <span class="label label-default">Produits proposés</span> {{ event.categoryId[0]['nom'] }}
+                    <span class="label label-info">Date</span> du {{ event.startDate|date('d/m/Y à H:i') }} au {{ event.endDate|date('d/m/Y à H:i') }} <span class="label label-info">Lieu</span> {{ event.lieux }} <span class="label label-info">Produits proposés</span> {{ event.categoryId[0]['nom'] }}
                 </p>
             
             
