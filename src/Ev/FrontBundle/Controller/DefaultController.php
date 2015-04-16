@@ -100,8 +100,6 @@ class DefaultController extends Controller
     {
         $em = $this->getDoctrine()->getManager();
         
-        //$events = $em->getRepository('EvFrontBundle:Events')->findAll();
-        
        $events = $em->createQuery(
                 'SELECT e FROM EvFrontBundle:Events e
                 WHERE e.endDate >= :date
@@ -124,7 +122,6 @@ class DefaultController extends Controller
                 
                 $image = $em->getRepository('EvFrontBundle:Images')->findOneById($produit->getImageId());
                 
-                //var_dump($image);
                 $prodInfo[$event->getId()][] = array(
                     'name' => $produit->getNom(),
                     'image' => $image->getLien()
