@@ -4,6 +4,21 @@
     <section id="content">
 	<div class="container">
             <div class="row">
+                
+                {% for flashMessage in app.session.flashbag.get('fail') %}
+                    <div class="alert alert-warning alert-dismissible" role="alert">
+                        <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                        {{ flashMessage }}
+                    </div>
+                {% endfor %}
+                
+                {% for flashMessage in app.session.flashbag.get('success') %}
+                    <div class="alert alert-success alert-dismissible" role="alert">
+                        <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                        {{ flashMessage }}
+                    </div>
+                {% endfor %}
+                
                 <h1>Nos prochaines ventes</h1>
 			
     {% for event in pagination %}
@@ -41,7 +56,15 @@
                     
                     </div>
                 </div>
+                
+               
+                
             </div>
+                
+             <div class="panel-footer">
+                <a class="btn btn-theme" href="{{ path('ev_front_register_event', { 'idEvent' : event.id, 'idUser' : 5 }) }}">Participer</a>
+            </div>
+                
         </div>
     {% endfor %}
         

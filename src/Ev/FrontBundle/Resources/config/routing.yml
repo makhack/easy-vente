@@ -17,3 +17,7 @@ ev_front_register:
 ev_front_best:
     path: /meilleures-ventes
     defaults: { _controller: EvFrontBundle:Default:best }
+    
+ev_front_register_event:
+    path: /register_event/{idEvent}/{idUser}
+    defaults: { _controller: EvFrontBundle:Default:registerEvent }
