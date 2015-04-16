@@ -111,6 +111,8 @@ class DefaultController extends Controller
             foreach ($eProduits as $eProduit) {
                 $produit = $em->getRepository('EvFrontBundle:Produits')->findOneById($eProduit->getProduitsId());
                 
+                
+                
                 $image = $em->getRepository('EvFrontBundle:Images')->findOneById($produit->getImageId());
                 
                 //var_dump($image);
