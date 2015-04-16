@@ -25,3 +25,7 @@ ev_front_register_event:
 ev_front_register_alert:
     path: /register_alert/{idProduit}/{idUser}
     defaults: { _controller: EvFrontBundle:Default:registerAlert }
+    
+ev_front_register_newsletter:
+    path: /register_newsletter/{idUser}
+    defaults: { _controller: EvFrontBundle:Default:registerNewsletter }

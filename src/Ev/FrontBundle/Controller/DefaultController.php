@@ -7,6 +7,7 @@ use Symfony\Component\HttpFoundation\Request;
 use Ev\FrontBundle\Entity\User;
 use Ev\FrontBundle\Entity\Participants;
 use \Ev\FrontBundle\Entity\Alerts;
+use \Ev\FrontBundle\Entity\NewsletterSubscribers;
 
 class DefaultController extends Controller 
 {
@@ -233,5 +234,31 @@ class DefaultController extends Controller
         }
         
         return $this->redirect($this->generateUrl('ev_front_best'));
+    }
+    
+    public function registerNewsletterAction($idUser)
+    {
+        $em = $this->getDoctrine()->getManager();
+        
+        // On vérifie si l'utilisateur n'est pas déjà inscrit
+        $newsletters = $em->createQuery('SELECT n FROM EvFrontBundle:NewsletterSubscribers n WHERE n.userId = :user')
+                            ->setParameters(array(
+                                'user' => $idUser
+                            ))->getResult();
+        
+        if(empty($newsletters)) {
+            // On enregistre la demande de l'utilisateur
+            $newsletter = new NewsletterSubscribers();
+            $newsletter->setUserId($idUser);
+        
+            $em->persist($newsletter);
+            $em->flush();
+            
+            $this->get('session')->getFlashBag()->add('success','Vous venez de souscrire à notre newsletter');
+        } else {
+            $this->get('session')->getFlashBag()->add('fail','Vous avez déjà souscrit à notre newsletter');
+        }
+        
+        return $this->redirect($this->generateUrl('ev_front_accueil_connected'));
     }
 }

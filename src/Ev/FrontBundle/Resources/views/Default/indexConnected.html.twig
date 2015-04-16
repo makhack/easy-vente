@@ -7,6 +7,21 @@
 	<div class="container">
 		<div class="row">
 			<div class="col-lg-12">
+                            
+                {% for flashMessage in app.session.flashbag.get('fail') %}
+                    <div class="alert alert-warning alert-dismissible" role="alert">
+                        <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                        {{ flashMessage }}
+                    </div>
+                {% endfor %}
+                
+                {% for flashMessage in app.session.flashbag.get('success') %}
+                    <div class="alert alert-success alert-dismissible" role="alert">
+                        <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                        {{ flashMessage }}
+                    </div>
+                {% endfor %}
+                            
 	<!-- Slider -->
         <div id="main-slider" class="flexslider">
             <ul class="slides">
@@ -68,7 +83,7 @@
                                     <p>Voluptatem accusantium doloremque laudantium sprea totam rem aperiam.</p>
                                 </div>
                                 <div class="box-bottom">
-                                    <a href="#">Learn more</a>
+                                    <a href="{{ path('ev_front_register_newsletter', { 'idUser' : 5 }) }}">Learn more</a>
                                 </div>
                             </div>
                         </div>
