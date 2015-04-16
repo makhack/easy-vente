@@ -6,10 +6,14 @@ ev_front_events:
     path: /prochains-evenements
     defaults: { _controller: EvFrontBundle:Default:next }
 
-ev_front_connexion:
-    path: /connexion
-    defaults: { _controller: EvFrontBundle:Default:connexion }
+ev_front_accueil_connected:
+    path: /accueil/connected
+    defaults: { _controller: EvFrontBundle:Default:connected }
     
+ev_front_register:
+    path: /register
+    defaults: { _controller: EvUserBundle:Registration:register }
+
 ev_front_best:
     path: /meilleures-ventes
     defaults: { _controller: EvFrontBundle:Default:best }

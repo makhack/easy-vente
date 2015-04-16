@@ -4,6 +4,7 @@ namespace Ev\FrontBundle\Entity;
 
 use FOS\UserBundle\Model\User as BaseUser;
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\Validator\Constraints as Validate;
 
 /**
  * @ORM\Entity
@@ -24,14 +25,34 @@ class User extends BaseUser
     {
         parent::__construct();
     }
-
+    
     /**
-     * Get id
-     *
-     * @return integer 
+     * @Validate\NotBlank()
+     * @ORM\Column( name="nom", type="string", length=255, nullable=true)
      */
-    public function getId()
-    {
-        return $this->id;
+    protected $nom;
+    
+    /**
+     * @Validate\NotBlank()
+     * @ORM\Column( name="prenom", type="string", length=255, nullable=true)
+     */
+    protected $prenom;
+    function getNom() {
+        return $this->nom;
     }
+
+    function getPrenom() {
+        return $this->prenom;
+    }
+
+    function setNom($nom) {
+        $this->nom = $nom;
+    }
+
+    function setPrenom($prenom) {
+        $this->prenom = $prenom;
+    }
+
+
+    
 }

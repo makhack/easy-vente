@@ -76,6 +76,9 @@ fos_user:
     db_driver: orm
     firewall_name: main
     user_class: Ev\FrontBundle\Entity\User
+    registration:
+        form:
+            type: ev_user_registration
 
 # KnpPaginator
 knp_paginator:
@@ -88,3 +91,4 @@ knp_paginator:
     template:
         pagination: KnpPaginatorBundle:Pagination:twitter_bootstrap_v3_pagination.html.twig     # sliding pagination controls template
         sortable: KnpPaginatorBundle:Pagination:sortable_link.html.twig # sort link template
+
