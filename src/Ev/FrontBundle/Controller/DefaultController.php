@@ -5,6 +5,7 @@ namespace Ev\FrontBundle\Controller;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\Request;
 use Ev\FrontBundle\Entity\User;
+use Ev\FrontBundle\Entity\Participants;
 
 class DefaultController extends Controller 
 {
@@ -80,10 +81,13 @@ class DefaultController extends Controller
     
     public function connectedAction(Request $request)
     {
-        $repo = $this->getDoctrine()
-                   ->getManager()
-                   ->getRepository('EvFrontBundle:Images');
-        $slides = $repo->findAll();
+        $em = $this->getDoctrine()
+                   ->getManager();
+                   
+        $slides = $em->createQuery('SELECT i FROM EvFrontBundle:Images i ORDER BY i.id')
+                     ->setMaxResults(3)
+                     ->setFirstResult(0)
+                     ->getResult();
         
         $data['slides'] = $slides;
         
@@ -146,8 +150,6 @@ class DefaultController extends Controller
                     ->setFirstResult(0)
                     ->getResult();
         
-        //var_dump($produits);
-        
         foreach($produits as $produit){
             $image = $em->getRepository('EvFrontBundle:Images')->findOneById($produit->getImageId());
             
@@ -158,8 +160,42 @@ class DefaultController extends Controller
         
         $data['images'] = $images;
         
-        //var_dump($images);
-        
         return $this->render('EvFrontBundle:Default:best.html.twig', $data);
+    }
+    
+    public function registerEventAction($idEvent, $idUser)
+    {
+        $em = $this->getDoctrine()->getManager();
+        
+        // On récupère le titre de l'événement pour le flashbag
+        $event = $em->createQuery('SELECT e.nom FROM EvFrontBundle:Events e WHERE e.id = :id')
+                    ->setParameter('id',$idEvent)
+                    ->getResult();
+        
+        $eventName = $event[0]['nom'];
+        
+        // On vérifie si l'utilisateur n'est pas déjà inscrit
+        $participation = $em->createQuery('SELECT p FROM EvFrontBundle:Participants p WHERE p.eventsId = :event AND p.usersId = :user')
+                            ->setParameters(array(
+                                'event' => $idEvent,
+                                'user' => $idUser
+                            ))->getResult();
+        
+        if(empty($participation)) {
+            // On enregistre la demande de l'utilisateur
+            $participant = new Participants();
+            $participant->setEventsId($idEvent);
+            $participant->setUsersId($idUser);
+            $participant->setStatut(0);
+        
+            $em->persist($participant);
+            $em->flush();
+            
+            $this->get('session')->getFlashBag()->add('success','Votre demande de participation à l\'événement '.$eventName.' a été enregistrée');
+        } else {
+            $this->get('session')->getFlashBag()->add('fail','Vous avez déjà demandé à participer à l\'événement '.$eventName);
+        }
+        
+        return $this->redirect($this->generateUrl('ev_front_events'));
     }
 }

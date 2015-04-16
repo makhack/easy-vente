@@ -24,14 +24,14 @@ class Participants
     /**
      * @var integer
      *
-     * @ORM\Column(name="events_id", type="integer")
+     * @ORM\Column(name="eventsId", type="integer")
      */
     private $eventsId;
 
     /**
      * @var integer
      *
-     * @ORM\Column(name="users_id", type="integer")
+     * @ORM\Column(name="usersId", type="integer")
      */
     private $usersId;
 
