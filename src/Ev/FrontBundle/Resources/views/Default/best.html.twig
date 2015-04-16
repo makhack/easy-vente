@@ -5,7 +5,21 @@
 	<div class="container">
             <div class="row">
                 <h1>Nos meilleures ventes</h1>
-			
+		
+                {% for flashMessage in app.session.flashbag.get('fail') %}
+                    <div class="alert alert-warning alert-dismissible" role="alert">
+                        <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                        {{ flashMessage }}
+                    </div>
+                {% endfor %}
+                
+                {% for flashMessage in app.session.flashbag.get('success') %}
+                    <div class="alert alert-success alert-dismissible" role="alert">
+                        <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                        {{ flashMessage }}
+                    </div>
+                {% endfor %}
+                
                 <div role="tabpanel">
                 
                 {% for produit in produits %}
@@ -30,6 +44,9 @@
                                 <img src="{{ asset(images[produit.id].lien) }}" />
                                 <p>{{ produit.description }}</p>
                                 <p><span class="label label-info">Disponible depuis le</span> {{ produit.dateCreation|date('d/m/Y') }} <span class="label label-info">Stocks</span> {{ produit.stock }}</p>
+                                <p>
+                                    <a class="btn btn-theme" href="{{ path('ev_front_register_alert', { 'idProduit' : produit.id, 'idUser' : 5 }) }}">Recevoir une alerte quand ce produit sera en vente</a>
+                                </p>
                             </div>
                     {% if loop.last %}
                         </div>

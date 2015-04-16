@@ -6,6 +6,7 @@ use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\Request;
 use Ev\FrontBundle\Entity\User;
 use Ev\FrontBundle\Entity\Participants;
+use \Ev\FrontBundle\Entity\Alerts;
 
 class DefaultController extends Controller 
 {
@@ -197,5 +198,40 @@ class DefaultController extends Controller
         }
         
         return $this->redirect($this->generateUrl('ev_front_events'));
+    }
+    
+    public function registerAlertAction($idProduit, $idUser)
+    {
+        $em = $this->getDoctrine()->getManager();
+        
+        // On récupère le titre du produit pour le flashbag
+        $produit = $em->createQuery('SELECT p.nom FROM EvFrontBundle:Produits p WHERE p.id = :id')
+                    ->setParameter('id',$idProduit)
+                    ->getResult();
+        
+        $produitName = $produit[0]['nom'];
+        
+        // On vérifie si l'utilisateur n'est pas déjà inscrit
+        $alerts = $em->createQuery('SELECT a FROM EvFrontBundle:Alerts a WHERE a.productId = :produit AND a.userId = :user')
+                            ->setParameters(array(
+                                'produit' => $idProduit,
+                                'user' => $idUser
+                            ))->getResult();
+        
+        if(empty($alerts)) {
+            // On enregistre la demande de l'utilisateur
+            $alert = new Alerts();
+            $alert->setProductId($idProduit);
+            $alert->setUserId($idUser);
+        
+            $em->persist($alert);
+            $em->flush();
+            
+            $this->get('session')->getFlashBag()->add('success','Votre alerte sur le produit '.$produitName.' a été enregistrée');
+        } else {
+            $this->get('session')->getFlashBag()->add('fail','Vous avez déjà une alerte sur le produit '.$produitName);
+        }
+        
+        return $this->redirect($this->generateUrl('ev_front_best'));
     }
 }

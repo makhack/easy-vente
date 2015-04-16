@@ -21,3 +21,7 @@ ev_front_best:
 ev_front_register_event:
     path: /register_event/{idEvent}/{idUser}
     defaults: { _controller: EvFrontBundle:Default:registerEvent }
+    
+ev_front_register_alert:
+    path: /register_alert/{idProduit}/{idUser}
+    defaults: { _controller: EvFrontBundle:Default:registerAlert }
