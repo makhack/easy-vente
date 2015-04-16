@@ -80,10 +80,13 @@ class DefaultController extends Controller
     
     public function connectedAction(Request $request)
     {
-        $repo = $this->getDoctrine()
-                   ->getManager()
-                   ->getRepository('EvFrontBundle:Images');
-        $slides = $repo->findAll();
+        $em = $this->getDoctrine()
+                   ->getManager();
+                   
+        $slides = $em->createQuery('SELECT i FROM EvFrontBundle:Images i ORDER BY i.id')
+                     ->setMaxResults(3)
+                     ->setFirstResult(0)
+                     ->getResult();
         
         $data['slides'] = $slides;
         
